@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import ListScreen from './ListScreen';
 
 const profile = {
   name: 'Ari',
@@ -15,34 +16,48 @@ const hobbies = [
 
 export default function App() {
   return (
-    <View style={style.container}>
+    <View style={styles.container}>
 
-      <Text style={style.title}>Personal Profile</Text>
+      {/* Profile */}
+      <Text style={styles.title}>Personal Profile</Text>
 
-      <View style={style.info}>
-        <Text style={style.text}>Emri: {profile.name}</Text>
-        <Text style={style.text}>Mbiemri: {profile.surname}</Text>
-        <Text style={style.text}>Ditelinjda: {profile.birthday}</Text>
+      <View style={styles.info}>
+        <Text style={styles.text}>
+          Emri: {profile.name}
+        </Text>
+
+        <Text style={styles.text}>
+          Mbiemri: {profile.surname}
+        </Text>
+
+        <Text style={styles.text}>
+          Ditëlindja: {profile.birthday}
+        </Text>
       </View>
 
-      <Text style={style.subtitle}>Hobbies</Text>
+      {/* Hobbies */}
+      <Text style={styles.subtitle}>Hobbies</Text>
 
-      <FlatList
-        data={hobbies}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={style.hobby}>
-            <Text style={style.hobbyText}>{item.name}</Text>
-          </View>
-        )}
-      />
+      {hobbies.map((item) => (
+        <View key={item.id} style={styles.hobby}>
+          <Text style={styles.hobbyText}>
+            {item.name}
+          </Text>
+        </View>
+      ))}
+
+      {/* Students */}
+      <Text style={styles.subtitle}>Students</Text>
+
+      <ListScreen />
 
       <StatusBar style="auto" />
+
     </View>
   );
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f2f4f7',
@@ -61,6 +76,7 @@ const style = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 15,
+    marginTop: 10,
     color: '#222',
   },
 
@@ -69,6 +85,16 @@ const style = StyleSheet.create({
     padding: 20,
     borderRadius: 15,
     marginBottom: 20,
+
+    elevation: 3,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
   },
 
   text: {
@@ -82,6 +108,17 @@ const style = StyleSheet.create({
     padding: 15,
     borderRadius: 12,
     marginBottom: 10,
+    width: '100%',
+
+    elevation: 3,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
   },
 
   hobbyText: {
