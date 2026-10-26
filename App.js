@@ -1,18 +1,13 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
-import UserScreen from "./screen/UserScreen"; 
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet , Text , View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import StackNavigator from './navigator/StackNavigator';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <UserScreen />
-    </View>
+
+export default function App(){
+  return(
+    <NavigationContainer>
+      <StackNavigator/>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-});
