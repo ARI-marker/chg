@@ -13,6 +13,10 @@ const Home = ({ navigation }) => {
         title="Go to About Screen"
         onPress={() => navigation.navigate("About")}
       />
+      <Button
+      title ='Open Drawer'
+      onPress={() => navigation.openDrawer()}
+      />
     </View>
   );
 };

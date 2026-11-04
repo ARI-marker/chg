@@ -1,57 +1,55 @@
+import React from 'react'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
+import { MainStackNavigator ,AboutStackNavigator } from './StackNavigator';
 
-import React from "react";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import MainStackNavigator from "./StackNavigator";
-import About from "../screens/About";
 
 const Tab = createBottomTabNavigator();
 
-export default function BottomTabNavigator() {
-  return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarActiveTintColor: "tomato",
-        tabBarInactiveTintColor: "gray",
-        tabBarStyle: {
-          backgroundColor: "white",
-        },
-        tabBarLabelStyle: {
-          fontSize: 12,
-        },
-      }}
-    >
-      <Tab.Screen
-        name="Home"
-        component={MainStackNavigator}
-        options={{
-          headerShown: false,
-          tabBarLabel: "Home",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="home"
-              color={color}
-              size={size}
-            />
-          ),
-        }}
-      />
 
-      <Tab.Screen
-        name="About"
-        component={About}
-        options={{
-          tabBarLabel: "About",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="information"
-              color={color}
-              size={size}
-            />
-          ),
+const BottomTabNavigator =() =>{
+    return( 
+    <Tab.Navigator
+    tabBarOptions={{
+        activeTintColor: "white",
+        inactiveTintColor: "lightgray",
+        style: {
+            backgroundColor: "blue",
+
+        },
+        labelStyle:{
+            fontSize: 12,
+        }
+
+    }}
+    >
+        <Tab.Screen
+        name='Home'
+        component={MainStackNavigator}
+        options={{ 
+            tabBarLabel: 'Home',
+            tabBarIcon: ({color})=>(
+                <MaterialCommunityIcons name='home' size={26} color={color}/>
+            ),
         }}
-      />
+        />
+                <Tab.Screen
+        name='About'
+        component={AboutStackNavigator}
+        options={{ 
+            tabBarLabel: 'About',
+            tabBarIcon: ({color})=>(
+                <MaterialCommunityIcons name='video-stabilization' size={26} color={color}/>
+            ),
+        }}
+        />
+
+
     </Tab.Navigator>
-  );
+    );    
+
+    
 }
+
+
+export default BottomTabNavigator;
